@@ -31,7 +31,6 @@ const GithubSchema = new mongoose.Schema({
 const FacebookSchema = new mongoose.Schema({
   facebookId: String,
   username: String,
-  email: String,
   profileImage: String,
 })
 

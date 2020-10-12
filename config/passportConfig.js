@@ -125,3 +125,51 @@ passport.use( new GithubStrategy(
 ))
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ----------------------------------------
+.               GITHUB STRATEGY
+---------------------------------------- */
+passport.use( new FacebookStrategy(
+  {
+    clientID: oauthKeys.FACEBOOK.clientID,
+    clientSecret: oauthKeys.FACEBOOK.clientSecret,
+    callbackURL: '/auth/facebook/callback'
+  },
+  (accessToken, refreshToken, profile, done)=>{
+    console.log(chalk.red(JSON.stringify(profile)));
+
+    User.findOne({ 'facebook.facebookId': profile.id }).then(existingUser =>{
+      if(existingUser) return done(null, existingUser);
+      
+        User.create({
+          username: profile.displayName,
+          // profileImage: profile.photos[0].value,
+
+          'facebook.facebookId': profile.id,
+
+          'facebook.usename': profile.displayName,
+          // 'facebook.profileImage': profile.photos[0].value,
+
+          createdAt: new Date(),
+        }).then(newUser=>{
+          return done(null, newUser);
+        })
+      
+    })
+  }
+))
+
+

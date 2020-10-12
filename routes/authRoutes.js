@@ -61,6 +61,25 @@ router.get('/github/callback',
 
 
 
+/* --------------------------------------
+.                  FACEbook
+-------------------------------------- */
+router.get('/facebook', passport.authenticate('facebook'))
+
+
+
+
+router.get('/facebook/callback',
+  passport.authenticate('facebook'),
+  (req, res)=>{
+    res.redirect('/');
+  }
+)
+
+
+
+
+
 
 
 

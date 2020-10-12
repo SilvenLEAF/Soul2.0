@@ -8,11 +8,15 @@ const AMAZON = {
 // };
 const GITHUB = {
   clientID: "265b414f0ae0d766ee2c",
-  clientSecret: "08a8162c4c1c5e6d975d72980a3b3c7b5d87d5d8"
+  clientSecret: "cde970d115ffe63e84dbdbe7fe789c12"
 };
+// const FACEBOOK = {
+//   clientID: "2503599789703821",
+//   clientSecret: "645088b310270cf3abbda58e01f65e96"
+// };
 const FACEBOOK = {
-  clientID: "2503599789703821",
-  clientSecret: "645088b310270cf3abbda58e01f65e96"
+  clientID: "695641114379760",
+  clientSecret: "cde970d115ffe63e84dbdbe7fe789c12"
 };
 const GOOGLE = {
   clientID: "948666598374-8ti04dtnev3nbet670nr15s4hm4nq451.apps.googleusercontent.com",
