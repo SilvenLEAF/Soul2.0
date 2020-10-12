@@ -8,7 +8,7 @@ const User = require('../models/User');
 module.exports.get_all_users = async (req, res, next)=>{
   try {
     const allUsers = await User.find({});
-    res.json(allUsers.reverse);
+    res.json(allUsers.reverse());
   } catch (err) {
     next(err, req, res)
   }

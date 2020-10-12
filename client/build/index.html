@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Domain Checker APP</title>
+
+
+  <style>
+    body{
+      margin: 0;
+      padding: 0;
+      font-family: sans-serif;
+      font-size: 14px;
+    }
+    a{
+      display: block;
+      margin: 20px;
+      margin-left: 50px;
+      text-decoration: none;
+
+      color: rgba(0, 0, 0, 0.9);
+      font-weight: 700;
+      font-size: 120%;
+      padding: 20px;
+      width: 250px;
+      border-radius: 30px;
+      text-align: center;
+      background-color: orangered;
+
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    form {      
+      margin-left: 100px;
+    }
+    input, button {      
+      font-size: 170%;
+    }
+  </style>
+</head>
+<body>
+  <h1>Domain Checker APP</h1>
+
+  <div>
+    <a href="/user/">Get Info</a>
+    <a href="/user/all">Get All Users</a>
+    <a href="/auth/logout/">Log out</a>
+    <a href="/auth/google/">Signup/Login with Google</a>
+    <a href="/auth/github/">Signup/Login with Github</a>
+    <a href="/auth/facebook/">Signup/Login with Facebook</a>
+  </div>
+
+
+  <div>
+    <form id="myDomainForm">
+      <input id="myDomainInput" type="text" placeholder="type a domain name" required>
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+
+
+
+  <script>
+    const myDomainInput = document.querySelector('#myDomainInput');
+    const myDomainForm = document.querySelector('#myDomainForm');
+    const h1 = document.querySelector('h1');
+
+    myDomainForm.addEventListener('submit', async (e)=>{
+      e.preventDefault();
+
+      const domainName = myDomainInput.value;
+      const res = await fetch('/getIpAddress', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ domainName })
+      });
+
+      const data = await res.json();
+
+
+      if(data.addresses){
+        h1.textContent = data.addresses;
+      } else {
+        h1.textContent = 'Not registered yet. Yay!'
+      }
+
+
+    })
+
+
+  </script>
+</body>
+</html>

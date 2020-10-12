@@ -6,8 +6,8 @@ const User = require('../models/User');
 const passport = require('passport');
 const oauthKeys = require('./oauthKeys');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
-const GithubStrategy = require('passport-github');
-const FacebookStrategy = require('passport-facebook');
+const GithubStrategy = require('passport-github').Strategy;
+const FacebookStrategy = require('passport-facebook').Strategy;
 
 
 
@@ -37,7 +37,7 @@ passport.deserializeUser((id, done)=>{
 /* ----------------------------------------
 .               GOOGLE STRATEGY
 ---------------------------------------- */
-pasport.use( new GoogleStrategy(
+passport.use( new GoogleStrategy(
   {
     clientID: oauthKeys.GOOGLE.clientID,
     clientSecret: oauthKeys.GOOGLE.clientSecret,
@@ -93,7 +93,7 @@ pasport.use( new GoogleStrategy(
 /* ----------------------------------------
 .               GITHUB STRATEGY
 ---------------------------------------- */
-pasport.use( new GithubStrategy(
+passport.use( new GithubStrategy(
   {
     clientID: oauthKeys.GITHUB.clientID,
     clientSecret: oauthKeys.GITHUB.clientSecret,
