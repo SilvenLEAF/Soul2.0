@@ -62,6 +62,7 @@ require('./config/passportConfig');
 .                 routes
 ---------------------------------------- */
 app.use(require('./routes/DnsRoute'));
+app.use('/auth', require('./routes/authRoutes'));
 
 
 // ----catch all handler
