@@ -1,3 +1,6 @@
+if(process.env.NODE_ENV !== 'production'){
+  require('dotenv').config();
+}
 const chalk = require('chalk');
 
 const express = require('express');
@@ -17,7 +20,7 @@ app.use(express.static(path.join(__dirname, `client/build`)));
 /* ----------------------------------------
 .                 config
 ---------------------------------------- */
-
+require('./config/mongodbConfig');
 
 
 
