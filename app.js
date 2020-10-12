@@ -1,3 +1,5 @@
+const chalk = require('chalk');
+
 const express = require('express');
 const path = require('path');
 
@@ -25,12 +27,26 @@ app.use(express.static(path.join(__dirname, `client/build`)));
 /* ----------------------------------------
 .                 routes
 ---------------------------------------- */
+app.use(require('./routes/DnsRoute'));
+
+
+// ----catch all handler
+app.get('*', (req, res, next)=>{
+  try {
+    res.sendFile(path.join(__dirname, `client/build/index.html`));
+  } catch (err) {
+    next(err, req, res);
+  }
+})
 
 
 
 
-
-
+// ------------ERROR HANDLER
+app.use((err, req, res, next)=>{
+  console.log(chalk.red(err.message));
+  console.log(err)
+})
 
 
 // --------------------------------LISTEN
