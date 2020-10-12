@@ -1,0 +1,29 @@
+{
+  "name": "domainchecker",
+  "version": "1.0.0",
+  "description": "Isn't is really frustrating to come up with the perfect name for your website only to find out that the domain name is not available? Not anymore! Check if the domain has already been taken with just a simple click.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SilvenLEAF/DomainChecker.git"
+  },
+  "keywords": [
+    "Domain",
+    "DNS",
+    "DomainChecker",
+    "DomainName",
+    "SilvenLEAF"
+  ],
+  "author": "SilvenLEAF",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/SilvenLEAF/DomainChecker/issues"
+  },
+  "homepage": "https://github.com/SilvenLEAF/DomainChecker#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
