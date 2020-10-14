@@ -64,7 +64,104 @@
 
 
 
+
+  <div>
+    <h3>Signup Form</h3>
+    <form id="signupForm">
+      <input id="signupEmail" type="text" placeholder="email" required>
+      <input id="signupPassword" type="password" placeholder="password" required>
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+
+
+
+  <div>
+    <h3>Login Form</h3>
+    <form id="loginForm">
+      <input id="loginEmail" type="text" placeholder="email" required>
+      <input id="loginPassword" type="password" placeholder="password" required>
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+
+
+
   <script>
+
+    const signupForm = document.querySelector('#signupForm')
+    const loginForm = document.querySelector('#loginForm')
+    
+    const loginEmail = document.querySelector('#loginEmail')
+    const loginPassword = document.querySelector('#loginPassword')
+    
+    const signupEmail = document.querySelector('#signupEmail')
+    const signupPassword = document.querySelector('#signupPassword')
+
+
+    loginForm.addEventListener('submit', async (e)=>{
+      e.preventDefault();
+
+      const email = loginEmail.value;
+      const password = loginPassword.value;
+
+      const res = await fetch('/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password })
+      });
+
+
+
+      const data = await res.json();
+
+    })
+    
+    
+    signupForm.addEventListener('submit', async (e)=>{
+      e.preventDefault();
+
+      const email = signupEmail.value;
+      const password = signupPassword.value;
+
+      const res = await fetch('/auth/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password })
+      });
+
+
+
+      const data = await res.json();
+
+    })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     const myDomainInput = document.querySelector('#myDomainInput');
     const myDomainForm = document.querySelector('#myDomainForm');
     const h1 = document.querySelector('h1');
