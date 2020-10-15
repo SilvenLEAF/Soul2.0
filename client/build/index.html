@@ -107,7 +107,7 @@
       const email = loginEmail.value;
       const password = loginPassword.value;
 
-      const res = await fetch('/auth/login', {
+      const res = await fetch('/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -130,7 +130,7 @@
       const email = signupEmail.value;
       const password = signupPassword.value;
 
-      const res = await fetch('/auth/signup', {
+      const res = await fetch('/signup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

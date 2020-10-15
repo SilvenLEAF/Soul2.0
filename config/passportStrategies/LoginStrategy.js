@@ -1,5 +1,6 @@
 
 
+const bcrypt = require('bcryptjs');
 const User = require('../../models/User');
 const Strategy = require('passport-local').Strategy;
 
@@ -34,7 +35,9 @@ module.exports = LoginStrategy = new Strategy(
       
 
       // if the password does not match
-      if (user.local.password !== password) return done({ msg: `Invalid credentials` }, null);
+      const isPasswordValid = bcrypt.compareSync(password, user.local.password)      
+      if (!isPasswordValid) return done({ msg: `Invalid credentials` }, null);
+      
 
 
 

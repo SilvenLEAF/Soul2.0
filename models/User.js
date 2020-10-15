@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const bcrypt = require('bcryptjs');
+
 
 
 
@@ -100,28 +100,6 @@ const UserSchema = new mongoose.Schema({
   createdAt: String
   
 })
-
-
-
-
-
-
-
-
-/* ----------------------------------
-.             USER MODEL
----------------------------------- */
-// methods ======================
-// generating a hash
-UserSchema.methods.generateHash = (password) => {
-  return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
-};
-
-// checking if password is valid
-UserSchema.methods.validPassword = (password) => {
-  return bcrypt.compareSync(password, this.local.password);
-};
-
 
 
 

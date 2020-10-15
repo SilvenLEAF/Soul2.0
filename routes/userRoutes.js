@@ -6,8 +6,7 @@ const userController = require('../controllers/userController');
 
 
 // ---------------------GET LOGGED IN USER
-router.get('/', (req, res, next)=>{
-  console.log(chalk.red(`request dot user\n`, req.user))
+router.get('/', (req, res, next)=>{  
   res.json(req.user)
 })
 
