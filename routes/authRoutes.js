@@ -100,7 +100,11 @@ router.post('/signup', (req, res, next)=>{
     }
 
     console.log(`User on the route`, user)
-    return res.json(user);
+    req.logIn(user, (err)=>{
+      if(err) return res.status(500).json({ msg: err.message || `Oops, something went wrong` })
+
+      return res.json(user);
+    })
     
   })(req, res, next)
 });
@@ -124,7 +128,11 @@ router.post('/login', (req, res, next)=>{
     }
 
     console.log(`User on the route`, user)
-    return res.json(user);
+    req.logIn(user, (err)=>{
+      if(err) return res.status(500).json({ msg: err.message || `Oops, something went wrong` })
+
+      return res.json(user);
+    })
     
   })(req, res, next)
 });
