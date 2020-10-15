@@ -58,11 +58,15 @@ require('./config/passportConfig');
 
 
 
+
+
+
+
 /* ----------------------------------------
 .                 routes
 ---------------------------------------- */
 app.use(require('./routes/DnsRoute'));
-app.use('/auth', require('./routes/authRoutes'));
+app.use(require('./routes/authRoutes'));
 app.use('/user', require('./routes/userRoutes'))
 
 
@@ -79,11 +83,20 @@ app.get('*', (req, res, next)=>{
 
 
 
+
 // ------------ERROR HANDLER
 app.use((err, req, res, next)=>{
   console.log(chalk.red(err.message));
   console.log(err)
-})
+
+  res.json({ msg: `Server errror`, error: err.message });
+});
+
+
+
+
+
+
 
 
 // --------------------------------LISTEN

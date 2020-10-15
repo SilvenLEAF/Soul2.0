@@ -4,78 +4,11 @@ const passport = require('passport');
 
 
 
+
 router.get('/logout', (req, res)=>{
   req.logOut();
   res.redirect('/');
 })
-
-
-
-
-
-
-
-
-
-/* --------------------------------------
-.                  GOOGLE
--------------------------------------- */
-router.get('/google', passport.authenticate('google', {
-  scope: ['profile', 'email']
-}))
-
-
-
-
-router.get('/google/callback',
-  passport.authenticate('google'),
-  (req, res)=>{
-    res.redirect('/');
-  }
-)
-
-
-
-
-
-
-
-
-
-/* --------------------------------------
-.                  GITHUB
--------------------------------------- */
-router.get('/github', passport.authenticate('github'))
-
-
-
-
-router.get('/github/callback',
-  passport.authenticate('github'),
-  (req, res)=>{
-    res.redirect('/');
-  }
-)
-
-
-
-
-
-/* --------------------------------------
-.                  Facebook
--------------------------------------- */
-router.get('/facebook', passport.authenticate('facebook'))
-
-
-
-
-router.get('/facebook/callback',
-  passport.authenticate('facebook'),
-  (req, res)=>{
-    res.redirect('/');
-  }
-)
-
 
 
 
@@ -94,12 +27,11 @@ router.get('/facebook/callback',
 -------------------------------------- */
 router.post('/signup', (req, res, next)=>{
   passport.authenticate('local-signup', (err, user, info)=>{
-    if(err) {
-      console.log( `Error on the route`, err);
+    if(err) {      
       return res.json(err);
     }
 
-    console.log(`User on the route`, user)
+    
     req.logIn(user, (err)=>{
       if(err) return res.status(500).json({ msg: err.message || `Oops, something went wrong` })
 
@@ -122,12 +54,11 @@ router.post('/signup', (req, res, next)=>{
 -------------------------------------- */
 router.post('/login', (req, res, next)=>{
   passport.authenticate('local-login', (err, user, info)=>{
-    if(err) {
-      console.log( `Error on the route`, err);
+    if(err) {      
       return res.json(err);
     }
 
-    console.log(`User on the route`, user)
+    
     req.logIn(user, (err)=>{
       if(err) return res.status(500).json({ msg: err.message || `Oops, something went wrong` })
 
@@ -136,6 +67,82 @@ router.post('/login', (req, res, next)=>{
     
   })(req, res, next)
 });
+
+
+
+
+
+
+
+
+
+/* --------------------------------------
+.                  GOOGLE
+-------------------------------------- */
+router.get('/auth/google', passport.authenticate('google', {
+  scope: ['profile', 'email']
+}))
+
+
+
+
+router.get('/auth/google/callback',
+  passport.authenticate('google'),
+  (req, res)=>{
+    res.redirect('/');
+  }
+)
+
+
+
+
+
+
+
+
+
+/* --------------------------------------
+.                  GITHUB
+-------------------------------------- */
+router.get('/auth/github', passport.authenticate('github'))
+
+
+
+
+router.get('/auth/github/callback',
+  passport.authenticate('github'),
+  (req, res)=>{
+    res.redirect('/');
+  }
+)
+
+
+
+
+
+/* --------------------------------------
+.                  Facebook
+-------------------------------------- */
+router.get('/auth/facebook', passport.authenticate('facebook'))
+
+
+
+
+router.get('/auth/facebook/callback',
+  passport.authenticate('facebook'),
+  (req, res)=>{
+    res.redirect('/');
+  }
+)
+
+
+
+
+
+
+
+
+
 
 
 
