@@ -210,15 +210,7 @@ passport.use('local-signup',
           return done({ msg: `This email is already taken` }, null);
         
 
-          // const newUser = new User();
-          // newUser.local.email = email;
-          // newUser.local.password = newUser.generateHash(password);
-
-          // newUser.save(err =>{
-          //   if(err) throw err;
-
-          //   return done(null, newUser)
-          // })
+        
         console.log(`The request body is \n`, req.body)
         User.create({
           'local.email': email,
@@ -246,3 +238,31 @@ passport.use('local-signup',
 /* ----------------------------------------
 .               LOGIN STRATEGY
 ---------------------------------------- */
+passport.use('local-login', 
+  new LocalStrategy({
+    // by default, local strategy uses username and password, we will override with email
+    usernameField : 'email',
+    passwordField : 'password',
+    passReqToCallback : true // allows us to pass back the entire request to the callback
+  },
+  (req, email, password, done) => {
+
+  User.findOne({ 'local.email' :  email }, (err, user) => {
+      // if there are any errors, return the error before anything else
+      if (err)
+          return done(err);
+
+      
+      if (!user)
+          return done({ msg: `No user found` }, null);
+
+      
+      if (user.local.password !== password)
+          return done({ msg: `Invalid credentials` }, null);
+
+      // all is well, return successful user
+      
+      return done(null, user);
+  });
+
+}));

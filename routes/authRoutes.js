@@ -113,5 +113,29 @@ router.post('/signup', (req, res, next)=>{
 
 
 
+/* --------------------------------------
+.                  Login
+-------------------------------------- */
+router.post('/login', (req, res, next)=>{
+  passport.authenticate('local-login', (err, user, info)=>{
+    if(err) {
+      console.log( `Error on the route`, err);
+      return res.json(err);
+    }
+
+    console.log(`User on the route`, user)
+    return res.json(user);
+    
+  })(req, res, next)
+});
+
+
+
+
+
+
+
+
+
 
 module.exports = router;

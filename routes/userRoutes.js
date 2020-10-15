@@ -1,3 +1,4 @@
+const chalk = require('chalk')
 const router = require('express').Router();
 const userController = require('../controllers/userController');
 
@@ -6,6 +7,7 @@ const userController = require('../controllers/userController');
 
 // ---------------------GET LOGGED IN USER
 router.get('/', (req, res, next)=>{
+  console.log(chalk.red(`request dot user\n`, req.user))
   res.json(req.user)
 })
 
