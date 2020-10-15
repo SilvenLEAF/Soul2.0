@@ -68,7 +68,8 @@
   <div>
     <h3>Signup Form</h3>
     <form id="signupForm">
-      <input id="signupEmail" type="text" placeholder="email" required>
+      <input id="signupUsername" type="text" placeholder="username" required>
+      <input id="signupEmail" type="email" placeholder="email" required>
       <input id="signupPassword" type="password" placeholder="password" required>
       <button type="submit">Submit</button>
     </form>
@@ -95,6 +96,7 @@
     const loginEmail = document.querySelector('#loginEmail')
     const loginPassword = document.querySelector('#loginPassword')
     
+    const signupUsername = document.querySelector('#signupUsername')
     const signupEmail = document.querySelector('#signupEmail')
     const signupPassword = document.querySelector('#signupPassword')
 
@@ -116,6 +118,7 @@
 
 
       const data = await res.json();
+      console.log(data)
 
     })
     
@@ -123,6 +126,7 @@
     signupForm.addEventListener('submit', async (e)=>{
       e.preventDefault();
 
+      const username = signupUsername.value;
       const email = signupEmail.value;
       const password = signupPassword.value;
 
@@ -131,12 +135,13 @@
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email, password })
+        body: JSON.stringify({ username, email, password })
       });
 
 
 
       const data = await res.json();
+      console.log(data)
 
     })
 

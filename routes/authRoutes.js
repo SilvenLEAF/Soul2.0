@@ -62,7 +62,7 @@ router.get('/github/callback',
 
 
 /* --------------------------------------
-.                  FACEbook
+.                  Facebook
 -------------------------------------- */
 router.get('/facebook', passport.authenticate('facebook'))
 
@@ -77,6 +77,33 @@ router.get('/facebook/callback',
 )
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+/* --------------------------------------
+.                  Signup
+-------------------------------------- */
+router.post('/signup', (req, res, next)=>{
+  passport.authenticate('local-signup', (err, user, info)=>{
+    if(err) {
+      console.log( `Error on the route`, err);
+      return res.json(err);
+    }
+
+    console.log(`User on the route`, user)
+    return res.json(user);
+    
+  })(req, res, next)
+});
 
 
 

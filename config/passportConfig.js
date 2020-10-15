@@ -8,6 +8,7 @@ const oauthKeys = require('./oauthKeys');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const GithubStrategy = require('passport-github').Strategy;
 const FacebookStrategy = require('passport-facebook').Strategy;
+const LocalStrategy = require('passport-local').Strategy;
 
 
 
@@ -140,7 +141,7 @@ passport.use( new GithubStrategy(
 
 
 /* ----------------------------------------
-.               GITHUB STRATEGY
+.               FACEBOOK STRATEGY
 ---------------------------------------- */
 passport.use( new FacebookStrategy(
   {
@@ -173,3 +174,75 @@ passport.use( new FacebookStrategy(
 ))
 
 
+
+
+
+
+
+
+
+
+
+
+
+/* ----------------------------------------
+.               SIGNUP STRATEGY
+---------------------------------------- */
+ 
+
+passport.use('local-signup', 
+  new LocalStrategy({
+    // by default, local strategy uses username and password, we will override with email
+    usernameField : 'email',
+    passwordField : 'password',
+    passReqToCallback : true // allows us to pass back the entire request to the callback
+  },
+  (req, email, password, done) => {
+      const { username } = req.body;
+      
+      User.findOne({ 'local.email' :  email }, (err, user) => {
+        // if there are any errors, return the error
+        if (err)
+          return done(err);
+
+        // check to see if theres already a user with that email
+        if (user) 
+          return done({ msg: `This email is already taken` }, null);
+        
+
+          // const newUser = new User();
+          // newUser.local.email = email;
+          // newUser.local.password = newUser.generateHash(password);
+
+          // newUser.save(err =>{
+          //   if(err) throw err;
+
+          //   return done(null, newUser)
+          // })
+        console.log(`The request body is \n`, req.body)
+        User.create({
+          'local.email': email,
+          'local.password': password,
+          createdAt: new Date(),
+          username,
+        }).then(newUser => {
+          return done(null, newUser);
+        })             
+       
+
+    });
+
+  }));
+
+
+
+
+
+
+
+
+
+
+/* ----------------------------------------
+.               LOGIN STRATEGY
+---------------------------------------- */
