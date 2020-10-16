@@ -4,4 +4,13 @@ Isn't is really frustrating to come up with the perfect name for your website on
 
 
 ## Technologies
-NodeJS, ExpressJS, PassportJS, MongoDB, React, Hooks and Context API, DNS module, OAUTH2.0, git, Serviceworker, Lighthouse audit, Chrome Dev Tools
+**BackEND:**  *NodeJS, ExpressJS, PassportJS (OAUTH2.0), DNS module*
+
+**FrontEND:** *React, SASS, Materialize, Hooks and Context API*
+
+**Datbase:** *MongoDB (with mongoose)*
+
+**PWA (with Offline Game):** *ServiceWorker, Lighthouse Audit, HTML, CSS, Vanilla JavaScript*
+
+
+**Others:** *git, Chrome Dev Tools, CLI, VS Code*
