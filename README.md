@@ -4,4 +4,4 @@ Isn't is really frustrating to come up with the perfect name for your website on
 
 
 ## Technologies
-NodeJS, ExpressJS, PassportJS, DNS module, OAUTH2.0
+NodeJS, ExpressJS, PassportJS, MongoDB, React, Hooks and Context API, DNS module, OAUTH2.0, git, Serviceworker, Lighthouse audit, Chrome Dev Tools
